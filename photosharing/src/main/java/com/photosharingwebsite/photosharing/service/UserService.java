@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -28,6 +29,11 @@ public class UserService {
     }
 
     public User findUserByUsername(String username) {
-        return userRepository.findByUsername(username).get(0);
+        List<User> userList = userRepository.findByUsername(username);
+        return userList.size() == 0 ? null : userList.get(0);
+    }
+
+    public List<User> getAllUsername() {
+        return userRepository.findAll();
     }
 }

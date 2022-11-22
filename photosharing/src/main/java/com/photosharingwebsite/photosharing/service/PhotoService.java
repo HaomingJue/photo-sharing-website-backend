@@ -74,7 +74,11 @@ public class PhotoService {
     }
 
     public Photo findPhotoByTitle(String title) {
-        List<Photo> result = photoRepository.findByTitle(title);
-        return result.get(0);
+        List<Photo> resultList = photoRepository.findByTitle(title);
+        return resultList.size() == 0 ? null : resultList.get(0);
+    }
+
+    public List<Photo> findAllPhotos() {
+        return photoRepository.findAll();
     }
 }

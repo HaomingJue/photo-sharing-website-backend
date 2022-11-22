@@ -42,20 +42,30 @@ public class PhotosharingApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Path path = Paths.get("C:\\Users\\capture.png");
-		byte[] fileContent = Files.readAllBytes(path);
-		String baseString = Base64.getEncoder().encodeToString(fileContent);
-//		userService.createNewUser("antifa", "Jeremy's password");
-		photoService.uploadPhoto("antifa", "3 photo", "Some description", baseString);
-		photoService.likePhoto("antifa", "2 photo");
-		HashSet<String> likedPhotos = userRepository.findByUsername("antifa").get(0).getLikedPhotos();
-		System.out.println(likedPhotos);
-		photoService.likePhoto("antifa", "3 photo");
-		likedPhotos = userRepository.findByUsername("antifa").get(0).getLikedPhotos();
-		System.out.println(likedPhotos);
-		photoService.unLikePhoto("antifa", "2 photo");
-		 likedPhotos = userRepository.findByUsername("antifa").get(0).getLikedPhotos();
-		System.out.println(likedPhotos);
+
+		if (userService.findUserByUsername("a") == null) {
+			System.out.println("No user found");
+		}
+//		Path path = Paths.get("C:\\Users\\capture.png");
+//		byte[] fileContent = Files.readAllBytes(path);
+//		String baseString = Base64.getEncoder().encodeToString(fileContent);
+////		userService.createNewUser("antifa", "Jeremy's password");
+//		photoService.uploadPhoto("antifa", "3 photo", "Some description", baseString);
+//		photoService.likePhoto("antifa", "2 photo");
+//		HashSet<String> likedPhotos = userRepository.findByUsername("antifa").get(0).getLikedPhotos();
+//		System.out.println(likedPhotos);
+//		photoService.likePhoto("antifa", "3 photo");
+//		likedPhotos = userRepository.findByUsername("antifa").get(0).getLikedPhotos();
+//		System.out.println(likedPhotos);
+//		photoService.unLikePhoto("antifa", "2 photo");
+//		 likedPhotos = userRepository.findByUsername("antifa").get(0).getLikedPhotos();
+//		System.out.println(likedPhotos);
+
+
+
+
+
+
 //		List<Photo> photoList = photoRepository.findByTitleAndUser("a photo", "antifa");
 //		for (Photo photo : photoList) {
 //			System.out.println(photo.getId());
