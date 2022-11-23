@@ -3,6 +3,8 @@ package com.photosharingwebsite.photosharing.controller;
 import com.photosharingwebsite.photosharing.model.User;
 import com.photosharingwebsite.photosharing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
@@ -18,7 +20,12 @@ public class UserController {
     }
 
     @QueryMapping
-    public List<User> users() {
+    public List<User> allUsers() {
         return userService.getAllUsers();
+    }
+
+    @QueryMapping
+    public User userByUsername(@Argument String username) {
+        return userService.findUserByUsername(username);
     }
 }

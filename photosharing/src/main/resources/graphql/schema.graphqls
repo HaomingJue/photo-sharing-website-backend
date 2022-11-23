@@ -1,5 +1,7 @@
 type Query {
-    users: [User]
+    allUsers: [User]
+    allPhotos: [Photo]
+    userByUsername(username: String!): User
 }
 
 type User {
@@ -7,4 +9,12 @@ type User {
     username: String!
     photos: [String]
     likedPhotos: [String]
+}
+
+type Photo {
+    id: ID!
+    title: String!
+    description: String
+    uploadUser: String
+    imgBase64: String
 }
