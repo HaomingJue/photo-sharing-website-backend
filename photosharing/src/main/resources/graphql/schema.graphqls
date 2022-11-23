@@ -2,6 +2,14 @@ type Query {
     allUsers: [User]
     allPhotos: [Photo]
     userByUsername(username: String!): User
+    photoByTitle(title: String!): Photo
+}
+
+type Mutation {
+    addUser(username: String!, password: String!): User
+    addPhoto(title: String!, description: String!, uploadedUser: String!, imgBase64: String!): Photo
+    likePhoto(username: String!, photoTitle: String!): User
+    unLikePhoto(username: String!, photoTitle: String!): User
 }
 
 type User {

@@ -4,7 +4,6 @@ import com.photosharingwebsite.photosharing.model.Photo;
 import com.photosharingwebsite.photosharing.model.User;
 import com.photosharingwebsite.photosharing.repository.PhotoRepository;
 import com.photosharingwebsite.photosharing.repository.UserRepository;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -22,18 +21,16 @@ public class PhotoService {
         this.photoRepository = photoRepository;
     }
 
-    public void uploadPhoto(String username, String photoTitle, String description, String imgBase64) {
+    public Photo uploadPhoto(String username, String photoTitle, String description, String imgBase64) {
         try {
-
-            photoRepository.save(new Photo(photoTitle, description, username, imgBase64));
-//            Query query = new Query().addCriteria(Criteria.where("username").is(username));
+            Photo newPhoto = new Photo(photoTitle, description, username, imgBase64);
+            photoRepository.save(newPhoto);
             User user = userRepository.findByUsername(username).get(0);
             HashSet<String> currentPhotos = user.getPhotos();
             currentPhotos.add(photoTitle);
             user.setPhotos(currentPhotos);
             userRepository.save(user);
-//            user.setPhotos(currentPhotos);
-//            User targetUser = mongoTemplate.save(user);
+            return newPhoto;
 
         } catch (Exception e) {
             throw new RuntimeException(e);
