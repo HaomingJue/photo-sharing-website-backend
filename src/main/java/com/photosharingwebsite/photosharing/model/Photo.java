@@ -7,6 +7,8 @@ import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.HashSet;
+
 @Document
 @Getter
 @Setter
@@ -22,6 +24,8 @@ public class Photo {
 
     private String imgBase64;
 
+    private HashSet<String> likedUsers;
+
     public Photo(){}
     public Photo(String title, String description, String uploadUser) {
         this.title = title;
@@ -34,5 +38,13 @@ public class Photo {
         this.description = description;
         this.uploadUser = uploadUser;
         this.imgBase64 = imgBase64;
+    }
+
+    public Photo(String title, String description, String uploadUser, String imgBase64, HashSet<String> likedUsers) {
+        this.title = title;
+        this.description = description;
+        this.uploadUser = uploadUser;
+        this.imgBase64 = imgBase64;
+        this.likedUsers = likedUsers;
     }
 }

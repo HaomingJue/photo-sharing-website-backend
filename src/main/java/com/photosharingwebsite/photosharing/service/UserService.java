@@ -2,8 +2,8 @@ package com.photosharingwebsite.photosharing.service;
 
 import com.photosharingwebsite.photosharing.model.Photo;
 import com.photosharingwebsite.photosharing.model.User;
+import com.photosharingwebsite.photosharing.repository.PhotoRepository;
 import com.photosharingwebsite.photosharing.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
@@ -12,9 +12,11 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PhotoRepository photoRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PhotoRepository photoRepository) {
         this.userRepository = userRepository;
+        this.photoRepository = photoRepository;
     }
 
     public User createNewUser(String username, String password) {
@@ -35,11 +37,20 @@ public class UserService {
 
     public User addLikedPhoto(String username, String photoTitle) {
         try {
+            // add photo to user's liked list
             User user = userRepository.findByUsername(username).get(0);
             HashSet<String> curLikedPhotos = user.getLikedPhotos();
             curLikedPhotos.add(photoTitle);
             user.setLikedPhotos(curLikedPhotos);
             userRepository.save(user);
+
+            // add user to photo's liked list
+            Photo photo = photoRepository.findByTitle(photoTitle).get(0);
+            HashSet<String> curLikedUsers = photo.getLikedUsers();
+            curLikedUsers.add(username);
+            photo.setLikedUsers(curLikedUsers);
+            photoRepository.save(photo);
+
             return user;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -49,11 +60,20 @@ public class UserService {
 
     public User removeLikedPhoto(String username, String photoTitle) {
         try {
+            // remove photo from user's liked list
             User user = userRepository.findByUsername(username).get(0);
             HashSet<String> curLikedPhotos = user.getLikedPhotos();
             curLikedPhotos.remove(photoTitle);
             user.setLikedPhotos(curLikedPhotos);
             userRepository.save(user);
+
+            // remove user from photo's liked list
+            Photo photo = photoRepository.findByTitle(photoTitle).get(0);
+            HashSet<String> curLikedUsers = photo.getLikedUsers();
+            curLikedUsers.remove(username);
+            photo.setLikedUsers(curLikedUsers);
+            photoRepository.save(photo);
+
             return user;
         } catch (Exception e) {
             throw new RuntimeException(e);

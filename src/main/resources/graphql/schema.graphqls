@@ -10,6 +10,7 @@ type Mutation {
     addPhoto(title: String!, description: String!, uploadedUser: String!, imgBase64: String!): Photo
     likePhoto(username: String!, photoTitle: String!): User
     unLikePhoto(username: String!, photoTitle: String!): User
+    deletePhoto(username: String!, photoTitle: String!): Photo
 }
 
 type User {
@@ -25,4 +26,5 @@ type Photo {
     description: String
     uploadUser: String
     imgBase64: String
+    likedUsers: [String]
 }

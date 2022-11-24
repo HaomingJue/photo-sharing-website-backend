@@ -32,4 +32,9 @@ public class PhotoController {
     public Photo addPhoto(@Argument String title, @Argument String description, @Argument String uploadedUser, @Argument String imgBase64) {
         return photoService.uploadPhoto(uploadedUser, title, description, imgBase64);
     }
+
+    @MutationMapping
+    public Photo deletePhoto(@Argument String username, @Argument String photoTitle) {
+        return photoService.deletePhoto(photoTitle, username);
+    }
 }

@@ -15,4 +15,7 @@ public interface PhotoRepository extends MongoRepository<Photo, String> {
 
     @Query("{$and: [{title: ?0}, {uploadUser: ?1}]}")
     List<Photo> findByTitleAndUser(String title, String user);
+
+    @Query(value="{'title': ?0}", delete = true)
+    Photo deleteByTitle(String title);
 }
