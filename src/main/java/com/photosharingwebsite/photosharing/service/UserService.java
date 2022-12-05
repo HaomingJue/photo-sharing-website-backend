@@ -82,8 +82,6 @@ public class UserService {
 
     public User authenticateUser(String username, String password) {
         List<User> userList = userRepository.findByUsername((username));
-        System.out.println(username);
-        System.out.println(password);
         System.out.println(userList.toString());
         if (userList.size() == 0) {
             return null;
