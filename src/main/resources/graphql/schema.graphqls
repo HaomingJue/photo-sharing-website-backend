@@ -3,6 +3,7 @@ type Query {
     allPhotos: [Photo]
     userByUsername(username: String!): User
     photoByTitle(title: String!): Photo
+    login(username: String!, password: String!): User
 }
 
 type Mutation {

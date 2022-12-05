@@ -45,4 +45,9 @@ public class UserController {
         return userService.removeLikedPhoto(username, photoTitle);
     }
 
+    @QueryMapping
+    public User login(@Argument String username, @Argument String password) {
+        return userService.authenticateUser(username, password);
+    }
+
 }

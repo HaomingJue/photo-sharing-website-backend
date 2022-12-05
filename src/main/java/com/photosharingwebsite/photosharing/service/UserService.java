@@ -79,4 +79,19 @@ public class UserService {
             throw new RuntimeException(e);
         }
     }
+
+    public User authenticateUser(String username, String password) {
+        List<User> userList = userRepository.findByUsername((username));
+        System.out.println(username);
+        System.out.println(password);
+        System.out.println(userList.toString());
+        if (userList.size() == 0) {
+            return null;
+        }
+        User user = userList.get(0);
+        if (!user.getPassword().equals(password)) {
+            return null;
+        }
+        return user;
+    }
 }
