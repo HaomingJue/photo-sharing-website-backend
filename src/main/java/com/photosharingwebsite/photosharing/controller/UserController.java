@@ -24,10 +24,7 @@ public class UserController {
     public List<User> allUsers() {
         return userService.getAllUsers();
     }
-    @QueryMapping
-    public List<User> alllUsers() {
-        return userService.getAllUsers();
-    }
+
     @QueryMapping
     public User userByUsername(@Argument String username) {
         return userService.findUserByUsername(username);

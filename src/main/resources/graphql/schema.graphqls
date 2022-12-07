@@ -1,6 +1,5 @@
 type Query {
     allUsers: [User]
-    alllUsers: [User]
     allPhotos: [Photo]
     userByUsername(username: String!): User
     photoByTitle(title: String!): Photo
