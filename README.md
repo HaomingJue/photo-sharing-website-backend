@@ -1,7 +1,7 @@
 ﻿# Photo Sharing Website Backend
 This project is for GNG5300 Individual Project Backend
 # Tech Stack
-**Database:** MongoDB \
+**Database:** MongoDB, S3(TBD)\
 **Framework:** Spring Boot \
 **CI/CD**: Github Actions\
 **Cloud Platform:** AWS EC2\
