@@ -7,7 +7,7 @@ spring:
       graphiql:
         enabled: true
 server:
-  port: 443
+  port: 80
   ssl:
     enabled: true
     key-alias: local_ssl
