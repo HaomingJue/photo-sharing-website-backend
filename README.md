@@ -9,7 +9,7 @@ This project is for GNG5300 Individual Project Backend
 *Notice: **SSL Certificate** is applied for secure https API url (disabled due to extra requirement for Chrome configuration)
 
 # System Architecture
-<img src="./src/main/resources/static/systemArchitecture.PNG" width=900px height=400px/>
+<img src="./src/main/resources/static/systemArchitecture.PNG" />
 
 # API
 Please check https://ec2-18-212-2-78.compute-1.amazonaws.com/graphiql 
