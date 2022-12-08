@@ -7,4 +7,11 @@ spring:
       graphiql:
         enabled: true
 server:
-  port: 80
+  port: 443
+  ssl:
+    enabled: true
+    key-alias: local_ssl
+    key-store: classpath:local-ssl.p12
+    key-store-type: PKCS12
+    key-password: sslspring
+    key-store-password: sslspring
